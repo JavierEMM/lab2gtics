@@ -47,7 +47,7 @@
                             <input type="hidden" value="editar" name="editar">
                             <div class="mb-3">
                                 <label class="form-label">DNI del Trabajador</label>
-                                <input type="text" class="form-control" th:field="${trabajador.dni}">
+                                <input type="text" disabled class="form-control" th:field="${trabajador.dni}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Correo del Trabajador</label>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Sede</label>
-                                <select class="form-select" name="idsede">
+                                <select class="form-control" name="idsede">
                                     <option th:each="sede: ${listaSedes}" th:text="${sede.nombreSede}"
                                             th:value="${sede.idsede}" th:selected="${sede.idsede eq trabajador.idsede}"></option>
                                 </select>
@@ -79,6 +79,7 @@
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">GRUPO 1 - PUCP @ 2022</div>
+                        <div class="text-muted">Se consideró que no se puede editar el DNI</div>
                     </div>
                 </div>
             </footer>

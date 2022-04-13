@@ -61,7 +61,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Sede</label>
-                                <select class="form-select" name="idsede">
+                                <select class="form-control" name="idsede">
                                     <option th:each="sede: ${listaSedes}" th:text="${sede.nombreSede}"
                                             th:value="${sede.idsede}"></option>
                                 </select>

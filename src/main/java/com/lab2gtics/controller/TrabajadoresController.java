@@ -39,10 +39,10 @@ public class TrabajadoresController {
     @PostMapping("/guardar")
     public String guardarTrabajador(Trabajadores trabajadores,RedirectAttributes attr,@RequestParam("editar") Optional<String> editar){
         if(editar.isPresent()){
-            attr.addFlashAttribute("accion","editar");
+            attr.addFlashAttribute("accion","alert-warning");
             attr.addFlashAttribute("msg","Trabajador editado exitosamente");
         }else{
-            attr.addFlashAttribute("accion","crear");
+            attr.addFlashAttribute("accion","alert-success");
             attr.addFlashAttribute("msg","Trabajador guardado exitosamente");
         }
         trabajadoresRepository.save(trabajadores);
@@ -68,6 +68,7 @@ public class TrabajadoresController {
         Optional<Trabajadores> optionalTrabajadores=trabajadoresRepository.findById(id);
         if(optionalTrabajadores.isPresent()){
             trabajadoresRepository.deleteById(id);
+            attr.addFlashAttribute("accion","alert-danger");
             attr.addFlashAttribute("msg","Trabajador borrado exitosamente");
         }else{
             attr.addFlashAttribute("msg","Error al borrar -missing id-");

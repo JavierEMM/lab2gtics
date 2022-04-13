@@ -68,7 +68,7 @@ public class TrabajadoresController {
         Optional<Trabajadores> optionalTrabajadores=trabajadoresRepository.findById(id);
         if(optionalTrabajadores.isPresent()){
             trabajadoresRepository.deleteById(id);
-            attr.addFlashAttribute("msg","Trabajador borrada exitosamente");
+            attr.addFlashAttribute("msg","Trabajador borrado exitosamente");
         }else{
             attr.addFlashAttribute("msg","Error al borrar -missing id-");
         }

@@ -2,6 +2,7 @@ package com.lab2gtics.controller;
 
 import com.lab2gtics.entity.Sede;
 import com.lab2gtics.repository.SedesRepository;
+import com.lab2gtics.repository.TrabajadoresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import java.util.Optional;
 public class SedesController {
     @Autowired
     SedesRepository sedesRepository;
+    @Autowired
+    TrabajadoresRepository trabajadoresRepository;
 
     @RequestMapping("")
     public String listaSedes(Model model){
@@ -33,6 +36,7 @@ public class SedesController {
         if(sede.isPresent()){
             Sede sede1 = sede.get();
             model.addAttribute("sede", sede1);
+            model.addAttribute("listatrabajadores",trabajadoresRepository.getTrabajadoresBySede(id));
             return "Sedes/editsede";
         }else{
             attr.addFlashAttribute("msg","No se puede editar este objeto -missing id-");

@@ -46,10 +46,10 @@ public class SedesController {
             attr.addFlashAttribute("accion","editar");
             attr.addFlashAttribute("msg","Sede editada exitosamente");
         }else{
-            sedesRepository.save(sede);
             attr.addFlashAttribute("accion","crear");
             attr.addFlashAttribute("msg","Sede creada exitosamente");
         }
+        sedesRepository.save(sede);
 
         return "redirect:/sedes";
     }

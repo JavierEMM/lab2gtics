@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -36,13 +37,20 @@ public class TrabajadoresController {
     }
 
     @PostMapping("/guardar")
-    public String guardarTrabajador(Trabajadores trabajadores){
+    public String guardarTrabajador(Trabajadores trabajadores,RedirectAttributes attr){
+        if(!trabajadores.getDni().isEmpty()){
+            attr.addFlashAttribute("accion","editar");
+            attr.addFlashAttribute("msg","Trabajador editado exitosamente");
+        }else{
+            attr.addFlashAttribute("accion","crear");
+            attr.addFlashAttribute("msg","Trabajador guardado exitosamente");
+        }
         trabajadoresRepository.save(trabajadores);
         return "redirect:/trabajadores/lista";
     }
 
     @GetMapping("/editar")
-    public String editarTrabajador(@RequestParam("id") String id, Model model){
+    public String editarTrabajador(@RequestParam("id") String id, Model model,RedirectAttributes attr){
         Optional<Trabajadores> optionalTrabajadores=trabajadoresRepository.findById(id);
         if(optionalTrabajadores.isPresent()){
             Trabajadores trabajadores=optionalTrabajadores.get();
@@ -50,16 +58,19 @@ public class TrabajadoresController {
             model.addAttribute("listaSedes",sedesRepository.findAll());
             return "/Trabajadores/editar";
         }else{
+            attr.addFlashAttribute("msg","Error al editar -missing id-");
             return "redirect:/trabajadores/lista";
         }
     }
 
     @GetMapping("/borrar")
-    public String borrarTrabajador(@RequestParam("id") String id, Model model){
+    public String borrarTrabajador(@RequestParam("id") String id, RedirectAttributes attr){
         Optional<Trabajadores> optionalTrabajadores=trabajadoresRepository.findById(id);
         if(optionalTrabajadores.isPresent()){
             trabajadoresRepository.deleteById(id);
-
+            attr.addFlashAttribute("msg","Trabajador borrada exitosamente");
+        }else{
+            attr.addFlashAttribute("msg","Error al borrar -missing id-");
         }
         return "redirect:/trabajadores/lista";
     }

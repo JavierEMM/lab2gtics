@@ -10,7 +10,7 @@ public class Sede {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idsede",nullable = false)
     private Integer idsede;
-    @Column(name = "nombreSede",nullable = false)
+    @Column(name = "nombresede",nullable = false)
     private String nombreSede;
     @Column(name = "direccion",nullable = false)
     private String direccion;

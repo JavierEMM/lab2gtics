@@ -41,8 +41,16 @@ public class SedesController {
     }
     @RequestMapping("/save")
     public String guardarSede(Sede sede, RedirectAttributes attr){
-        sedesRepository.save(sede);
-        attr.addFlashAttribute("msg","Sede actualizada correctamente");
+        if(sede.getIdsede() != null){
+            System.out.println("Id sede: "+ sede.getIdsede());
+            attr.addFlashAttribute("accion","editar");
+            attr.addFlashAttribute("msg","Sede editada exitosamente");
+        }else{
+            sedesRepository.save(sede);
+            attr.addFlashAttribute("accion","crear");
+            attr.addFlashAttribute("msg","Sede creada exitosamente");
+        }
+
         return "redirect:/sedes";
     }
 
@@ -51,7 +59,7 @@ public class SedesController {
         Optional<Sede> sede = sedesRepository.findById(id);
         if(sede.isPresent()){
             sedesRepository.deleteById(id);
-            attr.addFlashAttribute("msg","Borrado Exitoso");
+            attr.addFlashAttribute("msg","Sede borrada exitosamente");
         }else{
             attr.addFlashAttribute("msg","Error al borrar -missing id-");
         }

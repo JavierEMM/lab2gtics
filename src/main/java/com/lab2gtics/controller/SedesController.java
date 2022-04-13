@@ -47,10 +47,10 @@ public class SedesController {
     public String guardarSede(Sede sede, RedirectAttributes attr){
         if(sede.getIdsede() != null){
             System.out.println("Id sede: "+ sede.getIdsede());
-            attr.addFlashAttribute("accion","editar");
+            attr.addFlashAttribute("accion","alert-warning");
             attr.addFlashAttribute("msg","Sede editada exitosamente");
         }else{
-            attr.addFlashAttribute("accion","crear");
+            attr.addFlashAttribute("accion","alert-success");
             attr.addFlashAttribute("msg","Sede creada exitosamente");
         }
         sedesRepository.save(sede);
@@ -63,6 +63,7 @@ public class SedesController {
         Optional<Sede> sede = sedesRepository.findById(id);
         if(sede.isPresent()){
             sedesRepository.deleteById(id);
+            attr.addFlashAttribute("accion","alert-danger");
             attr.addFlashAttribute("msg","Sede borrada exitosamente");
         }else{
             attr.addFlashAttribute("msg","Error al borrar -missing id-");

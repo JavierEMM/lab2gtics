@@ -38,7 +38,7 @@
             <div class="container px-4 py-5">
                 <h1 class="pb-2 border-bottom">Lista de Tipos</h1>
                 <a class="btn btn-primary mt-4 mb-4" th:href="@{/tipos/new}">Nuevo Tipo</a>
-                <div th:class="'alert ' + ${(accion == 'editar' || accion == 'crear') ? 'alert-success' : 'alert-danger'}" th:text="${msg}" th:if="${msg != null}"></div>
+                <div th:class="'alert ' + ${accion}" th:text="${msg}" th:if="${msg != null && accion != null}"></div>
                 <table class="table table-sm">
                     <tr>
                         <th>#</th>

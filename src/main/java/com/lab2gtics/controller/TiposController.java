@@ -43,10 +43,10 @@ public class TiposController {
     @RequestMapping("/save")
     public String guardarSede(Tipo tipo, RedirectAttributes attr){
         if(tipo.getIdtipo() != null){
-            attr.addFlashAttribute("accion","editar");
+            attr.addFlashAttribute("accion","alert-warning");
             attr.addFlashAttribute("msg","Tipo editado exitosamente");
         }else{
-            attr.addFlashAttribute("accion","crear");
+            attr.addFlashAttribute("accion","alert-success");
             attr.addFlashAttribute("msg","Tipo creado exitosamente");
         }
         tiposRepository.save(tipo);
@@ -58,6 +58,7 @@ public class TiposController {
         Optional<Tipo> tipo = tiposRepository.findById(id);
         if(tipo.isPresent()){
             tiposRepository.deleteById(id);
+            attr.addFlashAttribute("accion","alert-danger");
             attr.addFlashAttribute("msg","Tipo borrado exitosamente");
         }else{
             attr.addFlashAttribute("msg","Error al borrar -missing id-");

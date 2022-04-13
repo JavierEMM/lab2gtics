@@ -10,34 +10,72 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     </head>
     <body>
-        <main>
-            <div class="container px-4 py-5">
-                <h1 class="pb-2 border-bottom">Lista Inventario</h1>
-                <a class="btn btn-primary mt-4 mb-4" th:href="@{/marca/new}">Nuevo Inventario</a>
-                <div th:if="${msg!=null}" class="alert alert-warning" th:text="${msg}"></div>
-                <div th:if="${msg2!=null}" class="alert alert-success" th:text="${msg2}"></div>
-                <div th:if="${msg3!=null}" class="alert alert-danger" th:text="${msg3}"></div>
-                <table class="table table-sm">
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre del Inventario</th>
-                        <th>Número de Serie</th>
-                        <th>Estado</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr th:each= " inventario,i : ${inventarioList}">
-                        <td th:text="${i.index + 1}"></td>
-                        <td th:text="${inventario.nombre}"></td>
-                        <td th:text="${inventario.numeroserie}"></td>
-                        <td><a class="btn btn-primary" th:href="@{'/inventario/edit' + '?id=' + ${inventario.idinventario}}">Editar</a>
-                        </td>
-                        <td><a class="btn btn-danger" th:href="@{'/inventario/delete' + '?id=' + ${marca.idinventario}}">Borrar</a>
-                        </td>
-                    </tr>
-                </table>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-app">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/inventario/lista}">Inventario</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/marca}">Marcas</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/tiposEquipo/lista}">Tipos de Equipo</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/sedes}">Sedes</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/trabajadores/lista}">Trabajadores</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div>
+            <main>
+                <div class="container px-4 py-5">
+                    <h1 class="pb-2 border-bottom">Lista Inventario</h1>
+                    <a class="btn btn-primary mt-4 mb-4" th:href="@{/marca/new}">Nuevo Inventario</a>
+                    <div th:if="${msg!=null}" class="alert alert-warning" th:text="${msg}"></div>
+                    <div th:if="${msg2!=null}" class="alert alert-success" th:text="${msg2}"></div>
+                    <div th:if="${msg3!=null}" class="alert alert-danger" th:text="${msg3}"></div>
+                    <table class="table table-sm">
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre del Inventario</th>
+                            <th>Número de Serie</th>
+                            <th>Estado</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr th:each= " inventario,i : ${inventarioList}">
+                            <td th:text="${i.index + 1}"></td>
+                            <td th:text="${inventario.nombre}"></td>
+                            <td th:text="${inventario.numeroserie}"></td>
+                            <td><a class="btn btn-primary" th:href="@{'/inventario/edit' + '?id=' + ${inventario.idinventario}}">Editar</a>
+                            </td>
+                            <td><a class="btn btn-danger" th:href="@{'/inventario/delete' + '?id=' + ${marca.idinventario}}">Borrar</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </main>
+        </div>
+        <!-- /Contenido -->
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">GRUPO 1 - PUCP @ 2022</div>
+                </div>
             </div>
-        </main>
+        </footer>
+        </div>
+        <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
                 crossorigin="anonymous"></script>

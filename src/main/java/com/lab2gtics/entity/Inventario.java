@@ -9,17 +9,17 @@ public class Inventario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idinventario", nullable = false )
     private Integer idinventario;
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre")
     private String nombre;
     @Column(name = "idtipo", nullable = false)
     private Integer idtipo;
-    @Column(name = "numeroserie", nullable = false)
+    @Column(name = "numeroserie")
     private String numeroserie;
     @Column(name = "idsede", nullable = false)
     private Integer idsede;
     @Column(name = "idmarca", nullable = false)
     private Integer idmarca;
-    @Column(name = "estado", nullable = false)
+    @Column(name = "estado")
     private String estado;
 
     public Integer getIdinventario() {

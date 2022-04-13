@@ -37,8 +37,8 @@ public class TrabajadoresController {
     }
 
     @PostMapping("/guardar")
-    public String guardarTrabajador(Trabajadores trabajadores,RedirectAttributes attr){
-        if(!trabajadores.getDni().isEmpty()){
+    public String guardarTrabajador(Trabajadores trabajadores,RedirectAttributes attr,@RequestParam("editar") Optional<String> editar){
+        if(editar.isPresent()){
             attr.addFlashAttribute("accion","editar");
             attr.addFlashAttribute("msg","Trabajador editado exitosamente");
         }else{

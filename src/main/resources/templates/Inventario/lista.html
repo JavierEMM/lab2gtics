@@ -37,10 +37,8 @@
             <main>
                 <div class="container px-4 py-5">
                     <h1 class="pb-2 border-bottom">Lista Inventario</h1>
-                    <a class="btn btn-primary mt-4 mb-4" th:href="@{/marca/new}">Nuevo Inventario</a>
-                    <div th:if="${msg!=null}" class="alert alert-warning" th:text="${msg}"></div>
-                    <div th:if="${msg2!=null}" class="alert alert-success" th:text="${msg2}"></div>
-                    <div th:if="${msg3!=null}" class="alert alert-danger" th:text="${msg3}"></div>
+                    <a class="btn btn-primary mt-4 mb-4" th:href="@{/inventario/new}">Nuevo Inventario</a>
+                    <div th:class="'alert ' + ${accion}" th:text="${msg}" th:if="${msg != null && accion != null}"></div>
                     <table class="table table-sm">
                         <tr>
                             <th>#</th>
@@ -57,7 +55,7 @@
                             <td th:text="${inventario.estado}"></td>
                             <td><a class="btn btn-primary" th:href="@{'/inventario/edit' + '?id=' + ${inventario.idinventario}}">Editar</a>
                             </td>
-                            <td><a class="btn btn-danger" th:href="@{'/inventario/delete' + '?id=' + ${marca.idinventario}}">Borrar</a>
+                            <td><a class="btn btn-danger" th:href="@{'/inventario/delete' + '?id=' + ${inventario.idinventario}}">Borrar</a>
                             </td>
                         </tr>
                     </table>

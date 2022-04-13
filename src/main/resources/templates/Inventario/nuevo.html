@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Crear Sede</title>
+        <title>Crear Inventario</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
@@ -36,13 +36,47 @@
         <div>
             <main>
                 <div class="container px-4 py-5">
-                    <h1 class="pb-2 mb-4 border-bottom">Crear Marca</h1>
-                    <form method="post" th:action="@{/marca/save}" class="col-4">
+                    <h1 class="pb-2 mb-4 border-bottom">Crear Inventario</h1>
+                    <form method="post" th:action="@{/inventario/save}" class="col-4">
                         <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre de la Marca</label>
-                            <input name="nombre" type="text" class="form-control" id="nombre    " />
+                            <label class="form-label">Nombre del Inventario</label>
+                            <input name="nombre" type="text" class="form-control"/>
                         </div>
-                        <a th:href="@{/marca}" class="btn btn-danger">Cancelar</a>
+                        <div class="mb-3">
+                            <label class="form-label">Numero de Serie</label>
+                            <input name="numeroserie" type="text" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="idsede"> Sede </label>
+                            <br>
+                            <select class="form-control" name="idsede" id="idsede">
+                                <option th:each="lista:${sede}" th:value="${lista.idsede}" th:text="${lista.nombreSede}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="idmarca"> Marca </label>
+                            <br>
+                            <select class="form-control" name="idmarca" id="idmarca">
+                                <option th:each="lista:${marca}" th:value="${lista.idmarca}" th:text="${lista.nombre}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="idtipo"> Tipo de Equipo </label>
+                            <br>
+                            <select class="form-control" name="idtipo" id="idtipo">
+                                <option th:each="lista:${tipo}" th:value="${lista.idtipo}" th:text="${lista.nombre}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <br>
+                            <select class="form-control" name="estado">
+                                <option value="almacen" th:text="${'Almacen'}"></option>
+                                <option value="pedido"  th:text="${'Pedido'}"></option>
+                                <option value="vendido" th:text="${'Vendido'}"></option>
+                            </select>
+                        </div>
+                        <a th:href="@{/inventario}" class="btn btn-danger">Cancelar</a>
                         <button type="submit" class="btn btn-primary">Crear</button>
                     </form>
                 </div>

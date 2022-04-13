@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Editar Inventario</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <main>
+            <div class="container px-4 py-5">
+                <h1 class="pb-2 mb-4 border-bottom">Editar Inventario</h1>
+                <form method="post" th:action="@{/inventario/save}" class="col-4">
+                    <input th:value="${inventario.idinventario}" name="idmarca" type="hidden" />
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre del Inventario</label>
+                        <input th:value="${inventario.nombre}" name="nombre" type="text" class="form-control" id="nombre" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="numeroserie" class="form-label">Número de Serie</label>
+                        <input th:value="${inventario.numeroserie}" name="numeroserie" type="text" class="form-control" id="numeroserie" />
+                    </div>
+                    <div class="form-group">
+                        <label for="idsede"> Sede </label>
+                        <br>
+                        <select class="form-control" name="idsede" id="idsede">
+                            <option th:each="lista:${sedes}" th:value="${lista.idsede}" th:text="${lista.nombresede}" th:selected="${lista.idsede}==*{idsede}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="idmarca"> Marca </label>
+                        <br>
+                        <select class="form-control" name="idmarca" id="idmarca">
+                            <option th:each="lista:${marca}" th:value="${lista.idmarca}" th:text="${lista.nombremarca}" th:selected="${lista.idmarca}==*{idmarca}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="idtipo"> Tipo de Equipo </label>
+                        <br>
+                        <select class="form-control" name="idtipo" id="idtipo">
+                            <option th:each="lista:${tipo}" th:value="${lista.idtipo}" th:text="${lista.nombretipo}" th:selected="${lista.idtipo}==*{idtipo}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <br>
+                        <select class="form-control" th:field="*{estado}">
+                            <option th:value="*{estado}" th:if="*{estado == 1}" th:text="${'Almacen'}"></option>
+                            <option th:value="*{estado}" th:if="*{estado == 2}" th:text="${'Pedido'}"></option>
+                            <option th:value="*{estado}" th:if="*{estado == 3}" th:text="${'Vendido'}"></option>
+
+                        </select>
+                    </div>
+                    <a th:href="@{/inventario}" class="btn btn-danger">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </form>
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+                crossorigin="anonymous"></script>
+    </body>
+</html>
